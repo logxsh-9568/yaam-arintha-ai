@@ -27,32 +27,65 @@ const getVoiceForLanguage = (language) => {
   return selectedVoice;
 };
 
+let currentUtterances = [];
+
 export const speakBharathi = (text, language, onStart, onEnd) => {
   if (!isVoiceAvailable()) return false;
   
   stopBharathiVoice();
+  currentUtterances = [];
   
-  const utterance = new SpeechSynthesisUtterance(text);
+  // Split text into chunks to prevent Chrome speech synthesis bug (cuts off after 15s)
+  const chunks = text.match(/[^.!?]+[.!?]*/g) || [text];
   const voice = getVoiceForLanguage(language);
-  
-  if (voice) {
-    utterance.voice = voice;
-  }
-  
-  utterance.lang = language === 'ta' ? 'ta-IN' : 'en-IN';
-  utterance.rate = language === 'ta' ? 0.9 : 1.0;
-  utterance.pitch = 1.0;
-  
-  if (onStart) utterance.onstart = onStart;
-  if (onEnd) utterance.onend = onEnd;
+  let chunkIndex = 0;
 
-  window.speechSynthesis.speak(utterance);
+  const speakNextChunk = () => {
+    if (chunkIndex >= chunks.length) {
+      if (onEnd) onEnd();
+      return;
+    }
+
+    const chunkText = chunks[chunkIndex].trim();
+    if (!chunkText) {
+      chunkIndex++;
+      speakNextChunk();
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(chunkText);
+    if (voice) utterance.voice = voice;
+    
+    utterance.lang = language === 'ta' ? 'ta-IN' : 'en-IN';
+    utterance.rate = language === 'ta' ? 0.9 : 1.0;
+    utterance.pitch = 1.0;
+
+    if (chunkIndex === 0 && onStart) {
+      utterance.onstart = onStart;
+    }
+
+    utterance.onend = () => {
+      chunkIndex++;
+      speakNextChunk();
+    };
+
+    utterance.onerror = (e) => {
+      console.error("SpeechSynthesisError:", e);
+      if (onEnd) onEnd();
+    };
+
+    currentUtterances.push(utterance);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  speakNextChunk();
   return true;
 };
 
 export const stopBharathiVoice = () => {
   if (isVoiceAvailable()) {
     window.speechSynthesis.cancel();
+    currentUtterances = [];
   }
 };
 
