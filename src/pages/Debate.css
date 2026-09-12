@@ -1,0 +1,135 @@
+.debate-page {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.topic-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.topic-card:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.topic-icon {
+  color: var(--color-saffron);
+  min-width: 40px;
+  height: 40px;
+}
+
+.topic-card h3 {
+  font-size: 1.2rem;
+  color: var(--color-text-main);
+}
+
+.ai-argument {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--color-saffron);
+}
+
+.arg-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gold);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.arg-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.debate-textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: var(--color-text-main);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.debate-textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.eval-scores {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.score-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 40px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.label {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.bar-bg {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-saffron));
+  border-radius: 4px;
+}
+
+.val {
+  font-weight: bold;
+  color: var(--color-gold);
+  text-align: right;
+}
+
+.overall-score {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.big-score {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-top: 0.5rem;
+}
+
+.inline-block { display: inline-block; }
+.mr-2 { margin-right: 0.5rem; }
+.text-right { text-align: right; }
+.pt-4 { padding-top: 1.5rem; }
+.text-muted { color: var(--color-text-muted); }

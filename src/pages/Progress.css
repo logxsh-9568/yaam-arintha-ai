@@ -1,0 +1,52 @@
+.progress-page {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.mission-item.done {
+  background: rgba(212, 175, 55, 0.1);
+  border-left: 4px solid var(--color-gold);
+}
+
+.mission-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-gold);
+}
+
+.mission-item.done .mission-checkbox {
+  border-color: var(--color-gold);
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.mission-name {
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+}
+
+.mission-item.done .mission-name {
+  color: var(--color-gold);
+  font-weight: 500;
+}

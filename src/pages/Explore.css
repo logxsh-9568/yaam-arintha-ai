@@ -1,0 +1,62 @@
+.explore-page {
+  padding: 3rem 2rem;
+}
+
+.categories-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0 3rem;
+}
+
+.category-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  color: var(--color-text-main);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.category-pill:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.poems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.poem-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.poem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.poem-title {
+  font-size: 1.5rem;
+  color: var(--color-gold);
+}
+
+.poem-excerpt {
+  color: var(--color-text-muted);
+  font-style: italic;
+  flex: 1;
+}
+
+.poem-card-footer {
+  margin-top: auto;
+}
+
+.w-100 { width: 100%; }
+.items-center { align-items: center; }
