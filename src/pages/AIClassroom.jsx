@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { Volume2, MessageSquare, Play, HelpCircle, CheckCircle, BrainCircuit } from 'lucide-react';
@@ -14,6 +14,7 @@ const AIClassroom = () => {
   const [chatInput, setChatInput] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  const chatEndRef = useRef(null);
   
   const totalSteps = 6;
 
@@ -25,6 +26,10 @@ const AIClassroom = () => {
       
     setChatHistory([{ role: 'teacher', content: greeting }]);
   }, [language]);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatHistory, isTyping]);
 
   const handleStepChange = (step) => {
     setCurrentStep(step);
@@ -206,6 +211,7 @@ const AIClassroom = () => {
                 {msg.content}
               </div>
             ))}
+            <div ref={chatEndRef} />
           </div>
 
           <form className="chat-input-area" onSubmit={handleAskAI}>

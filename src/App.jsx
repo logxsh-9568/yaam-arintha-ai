@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Onboarding from './pages/Onboarding';
 import Dashboard from './pages/Dashboard';
 import Explore from './pages/Explore';
+import PoemDetails from './pages/PoemDetails';
 import AIClassroom from './pages/AIClassroom';
 import Quiz from './pages/Quiz';
 import Debate from './pages/Debate';
@@ -24,6 +25,7 @@ function App() {
               <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/explore" element={<Explore />} />
+              <Route path="/explore/:poemId" element={<PoemDetails />} />
               <Route path="/classroom" element={<AIClassroom />} />
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/debate" element={<Debate />} />

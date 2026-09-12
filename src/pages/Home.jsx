@@ -1,21 +1,56 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, Sparkles, Mic, Lightbulb } from 'lucide-react';
+import { BookOpen, Sparkles, Mic, Lightbulb, ArrowRight } from 'lucide-react';
 import { AppContext } from '../context/AppContext';
 import './Home.css';
 
 const Home = () => {
   const { language } = useContext(AppContext);
   const navigate = useNavigate();
+  const heroRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleStart = () => {
     navigate('/onboarding');
   };
 
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      // Respect prefers-reduced-motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      
+      if (!heroRef.current) return;
+      const { left, top, width, height } = heroRef.current.getBoundingClientRect();
+      const x = (e.clientX - left) / width - 0.5;
+      const y = (e.clientY - top) / height - 0.5;
+      setMousePosition({ x, y });
+    };
+
+    const heroElement = heroRef.current;
+    if (heroElement) {
+      heroElement.addEventListener('mousemove', handleMouseMove);
+    }
+    return () => {
+      if (heroElement) {
+        heroElement.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section" ref={heroRef}>
+        
+        {/* Cinematic Background Scene */}
+        <div className="cinematic-background" style={{ transform: `translate(${mousePosition.x * -10}px, ${mousePosition.y * -10}px)` }}>
+          <div className="bharathi-scene" style={{ transform: `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px)` }}></div>
+          <div className="cinematic-overlay"></div>
+          
+          <div className="ai-particles" style={{ transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * -30}px)` }}></div>
+          <div className="dust-particles"></div>
+        </div>
+
         <div className="container hero-container">
           <div className="hero-content">
             <div className="badge">
@@ -46,18 +81,17 @@ const Home = () => {
                 {language === 'en' ? 'Explore Bharathiyar' : 'பாரதியாரை அறிவோம்'}
               </Link>
             </div>
+
+            <div className="timeline-link-wrapper" style={{ marginTop: '2rem' }}>
+              <Link to="/bharathi-timeline" className="timeline-micro-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold)', textDecoration: 'none', fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase', opacity: 0.8, transition: 'opacity 0.3s' }}>
+                <span className="micro-text">{language === 'en' ? "Enter Bharathi's Era" : "பாரதியின் சகாப்தத்திற்குள் நுழைய"}</span>
+                <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
           
           <div className="hero-visual">
-            <div className="ai-concept-circle">
-              <div className="ai-core"></div>
-              <div className="orbiting-elements">
-                <div className="element t-1"><BookOpen size={24} /></div>
-                <div className="element t-2"><Sparkles size={24} /></div>
-                <div className="element t-3"><Mic size={24} /></div>
-                <div className="element t-4"><Lightbulb size={24} /></div>
-              </div>
-            </div>
+            {/* Empty container to maintain layout balance and let the background shine through */}
           </div>
         </div>
       </section>

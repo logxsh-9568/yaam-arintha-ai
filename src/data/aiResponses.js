@@ -38,6 +38,20 @@ export const aiResponses = {
         ta: "இந்த பாடலின் முக்கிய கருத்து, மனித குலம் அச்சத்தை வென்று, சமத்துவத்தோடும் சுதந்திரத்தோடும் வாழ வேண்டும் என்பதே ஆகும்.",
         en: "The main theme of this poem is that humanity must overcome fear and live with equality and freedom."
       }
+    },
+    {
+      keys: ["இச்சகத்து", "இச்சகத்து ளோரெலாம்", "எதிர்த்து", "எதிர்த்து நின்ற"],
+      response: {
+        ta: "'இச்சகத்து ளோரெலாம் எதிர்த்து நின்ற போதினும்' என்பதன் பொருள்: இந்த உலகத்தில் உள்ள அனைவரும் ஒன்றுசேர்ந்து நம்மை எதிர்த்தாலும் நாம் சற்றும் பயப்படக்கூடாது என்பதாகும். இது நமது அசைக்க முடியாத தன்னம்பிக்கையை குறிக்கிறது.",
+        en: "The line 'Ichchagathu lorelAm ethirthu nindra podhinum' means: Even if all the people in this entire world stand united against us, we should not fear. It represents our unwavering self-confidence."
+      }
+    },
+    {
+      keys: ["உச்சி மீது", "வானிடிந்து", "வீழுகின்ற", "வானம்"],
+      response: {
+        ta: "'உச்சி மீது வானிடிந்து வீழுகின்ற போதினும்' என்பதன் பொருள்: நம் தலைக்கு மேல் வானமே இடிந்து விழுவது போன்ற மிகப்பெரிய ஆபத்து வந்தாலும், நாம் தைரியத்தை கைவிடக்கூடாது என்பதாகும்.",
+        en: "The line 'Uchi meedhu vaanidindhu veezhugindra podhinum' means: Even if the sky itself crashes down upon our heads (representing extreme danger), we must not abandon our courage."
+      }
     }
   ]
 };
