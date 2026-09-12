@@ -1,10 +1,10 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, RotateCcw, Pause, Play, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, RotateCcw, Pause, Play, Square, X } from 'lucide-react';
 import '../../pages/BharathiTimeline.css';
 
 const SimulationControls = ({ 
-  onPrev, onNext, onReplay, onTogglePause, onExit, 
-  isPlaying, hasPrev, hasNext 
+  onPrev, onNext, onReplay, onTogglePause, onStop, onPlay, onExit, 
+  isPlaying, hasPrev, hasNext, language 
 }) => {
   return (
     <div className="bt-controls">
@@ -14,23 +14,37 @@ const SimulationControls = ({
         disabled={!hasPrev}
         aria-label="Previous Year"
       >
-        <ArrowLeft size={18} /> <span className="hide-mobile">Previous</span>
+        <ArrowLeft size={18} /> <span className="hide-mobile">{language === 'ta' ? 'முந்தைய' : 'Prev'}</span>
       </button>
       
       <div className="bt-control-center">
         <button 
           className="bt-control-btn icon-only" 
-          onClick={onReplay}
-          aria-label="Replay Simulation"
+          onClick={onPlay}
+          title={language === 'ta' ? 'இயக்கு' : 'Play Voice'}
         >
-          <RotateCcw size={18} />
+          <Play size={18} />
         </button>
         <button 
           className="bt-control-btn icon-only" 
           onClick={onTogglePause}
-          aria-label={isPlaying ? "Pause Simulation" : "Resume Simulation"}
+          title={language === 'ta' ? 'இடைநிறுத்து' : 'Pause Voice'}
         >
-          {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+          <Pause size={18} />
+        </button>
+        <button 
+          className="bt-control-btn icon-only" 
+          onClick={onStop}
+          title={language === 'ta' ? 'நிறுத்து' : 'Stop Voice'}
+        >
+          <Square size={18} />
+        </button>
+        <button 
+          className="bt-control-btn icon-only" 
+          onClick={onReplay}
+          title={language === 'ta' ? 'மீண்டும் தொடங்கு' : 'Replay Scene'}
+        >
+          <RotateCcw size={18} />
         </button>
       </div>
 
@@ -40,7 +54,7 @@ const SimulationControls = ({
         disabled={!hasNext}
         aria-label="Next Year"
       >
-        <span className="hide-mobile">Next</span> <ArrowRight size={18} />
+        <span className="hide-mobile">{language === 'ta' ? 'அடுத்த' : 'Next'}</span> <ArrowRight size={18} />
       </button>
 
       <button 
@@ -48,7 +62,7 @@ const SimulationControls = ({
         onClick={onExit}
         aria-label="Exit Simulation"
       >
-        <X size={18} /> <span className="hide-mobile">Exit</span>
+        <X size={18} /> <span className="hide-mobile">{language === 'ta' ? 'வெளியேறு' : 'Exit'}</span>
       </button>
     </div>
   );
